@@ -7,11 +7,13 @@ import (
 
 	"Subly/internal/config"
 	"Subly/internal/db"
+	"Subly/internal/handlers"
 )
 
 func main() {
 	cfg := config.LoadConfig()
 	db.InitDB(cfg)
+	http.HandleFunc("/users", handlers.CreateUserHandler)
 	http.HandleFunc("/ping", func(w http.ResponseWriter, r *http.Request) {
 		fmt.Fprintln(w, "Ананьев Чмо")
 	})
